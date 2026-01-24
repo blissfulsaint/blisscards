@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "cards": [
+    {
+      "id": "seed-1",
+      "front": "Everyone (used in addressing a group)",
+      "back": "みなさん",
+      "path": ["Japanese", "Act 6", "Scene 1"],
+      "tags": [],
+      "notes": "",
+      "createdAt": "2026-01-24T00:00:00.000Z",
+      "updatedAt": "2026-01-24T00:00:00.000Z",
+      "source": "seed"
+    },
+    {
+      "id": "seed-2",
+      "front": "Member",
+      "back": "めんばあ",
+      "path": ["Japanese", "Act 6", "Scene 1"],
+      "tags": [],
+      "notes": "",
+      "createdAt": "2026-01-24T00:00:00.000Z",
+      "updatedAt": "2026-01-24T00:00:00.000Z",
+      "source": "seed"
+    },
+    {
+      "id": "seed-3",
+      "front": "Something (to say)",
+      "back": "ひとこと",
+      "path": ["Japanese", "Act 6", "Scene 1"],
+      "tags": [],
+      "notes": "",
+      "createdAt": "2026-01-24T00:00:00.000Z",
+      "updatedAt": "2026-01-24T00:00:00.000Z",
+      "source": "seed"
+    },
+    {
+      "id": "seed-4",
+      "front": "Self-introduction",
+      "back": "じこしょおかい（します）",
+      "path": ["Japanese", "Act 6", "Scene 1"],
+      "tags": [],
+      "notes": "",
+      "createdAt": "2026-01-24T00:00:00.000Z",
+      "updatedAt": "2026-01-24T00:00:00.000Z",
+      "source": "seed"
+    }
+  ]
+}
