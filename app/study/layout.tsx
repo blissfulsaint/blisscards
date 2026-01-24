@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: 'Account Home'
+    title: 'Study'
 }
 
 export default function StudyLayout({ children }: { children: React.ReactNode }) {
