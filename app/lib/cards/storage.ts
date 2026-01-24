@@ -7,8 +7,10 @@ function nowISO() {
   return new Date().toISOString();
 }
 
-function isCard(x: any): x is Card {
-  return x && typeof x.id === "string" && typeof x.front === "string" && typeof x.back === "string";
+function isCard(x: unknown): x is Card {
+  if (!x || typeof x !== "object") return false
+  const c = x as Partial<Card>
+  return typeof c.id === "string" && typeof c.front === "string" && typeof c.back === "string"
 }
 
 export function loadStore(): CardStoreV1 {

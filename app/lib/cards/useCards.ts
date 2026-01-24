@@ -1,45 +1,48 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useState } from "react"
 import type { Card } from "./types"
 import { deleteCard, loadStore, saveStore, upsertCard } from "./storage"
 
 export function useCards() {
-  const [cards, setCards] = useState<Card[]>([])
+  const [cards, setCards] = useState<Card[]>(() => {
+    if (typeof window === "undefined") return []
+    // loadStore() already seeds on first run if empty
+    return loadStore().cards
+  })
 
-  useEffect(() => {
-    const store = loadStore()
-    setCards(store.cards)
+  const refresh = useCallback(() => {
+    setCards(loadStore().cards)
   }, [])
 
-  function refresh() {
-    setCards(loadStore().cards)
-  }
+  const addCard = useCallback(
+    (card: Card) => {
+      upsertCard(card)
+      refresh()
+    },
+    [refresh]
+  )
 
-  function addCard(card: Card) {
-    upsertCard(card)
-    refresh()
-  }
+  const updateCard = useCallback(
+    (card: Card) => {
+      upsertCard(card)
+      refresh()
+    },
+    [refresh]
+  )
 
-  function updateCard(card: Card) {
-    upsertCard(card)
-    refresh()
-  }
+  const removeCard = useCallback(
+    (id: string) => {
+      deleteCard(id)
+      refresh()
+    },
+    [refresh]
+  )
 
-  function removeCard(id: string) {
-    deleteCard(id)
-    refresh()
-  }
-
-  function replaceAll(next: Card[]) {
+  const replaceAll = useCallback((next: Card[]) => {
     saveStore({ version: 1, cards: next })
     setCards(next)
-  }
+  }, [])
 
-  const meta = useMemo(() => {
-    const courses = Array.from(new Set(cards.map(c => c.path?.[0]).filter(Boolean)))
-    return { courses }
-  }, [cards])
-
-  return { cards, meta, addCard, updateCard, removeCard, replaceAll }
+  return { cards, addCard, updateCard, removeCard, replaceAll }
 }
