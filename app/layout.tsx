@@ -9,7 +9,10 @@ const josefinSans = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "BlissCards",
+  title: {
+    template: "%s | BlissCards",
+    default: "BlissCards"
+  },
   description: "A free alternative to Quizlet, allowing you to create your own flashcard sets and review as much as you need!",
 };
 
