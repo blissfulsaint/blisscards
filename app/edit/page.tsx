@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useMemo, useState } from "react"
 import { useCards } from "../lib/cards/useCards"
 import type { Card } from "../lib/cards/types"
+import { useMounted } from "../lib/useMounted"
 
 function nowISO() {
   return new Date().toISOString()
@@ -30,6 +31,7 @@ type FormState = {
 }
 
 export default function EditPage() {
+  const mounted = useMounted()
   const { cards, addCard, updateCard, removeCard } = useCards()
 
   // Build options from existing cards
@@ -118,6 +120,8 @@ export default function EditPage() {
 
     resetForm()
   }
+  
+  if (!mounted) return <div className="p-4">Loading…</div>
 
   return (
     <main className="mx-auto max-w-3xl p-4 space-y-6">

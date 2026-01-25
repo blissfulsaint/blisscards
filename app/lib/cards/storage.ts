@@ -61,3 +61,7 @@ export function deleteCard(id: string) {
   const store = loadStore()
   saveStore({ version: 1, cards: store.cards.filter(c => c.id !== id) })
 }
+
+export function exportStore(): CardStoreV1 {
+  return loadStore()
+}
