@@ -3,12 +3,15 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useCards } from "./lib/cards/useCards";
+import { useMounted } from "@/app/lib/useMounted";
 
 function uniq(values: (string | undefined)[]) {
   return Array.from(new Set(values.filter(Boolean))) as string[]
 }
 
 export default function Home() {
+  const mounted = useMounted()
+
   const { cards } = useCards()
 
   const courses = useMemo(() => uniq(cards.map(c => c.path?.[0])), [cards])
@@ -36,6 +39,15 @@ export default function Home() {
       return true
     }).length
   }, [cards, course, act, scene])
+
+  if (!mounted) {
+    return (
+      <main className="mx-auto max-w-xl p-4 space-y-4">
+        <h1 className="text-2xl font-bold">Flashcards</h1>
+        <div className="text-sm text-gray-600">Loading…</div>
+      </main>
+    )
+  }
 
   return (
     <main className="mx-auto max-w-xl p-4 space-y-4">
@@ -70,6 +82,9 @@ export default function Home() {
         </Link>
         <Link className="flex-1 text-center rounded border p-3" href="/edit">
           Edit Cards
+        </Link>
+        <Link className="flex-1 text-center rounded border p-3" href="/import-export">
+          Import/Export
         </Link>
       </div>
     </main>

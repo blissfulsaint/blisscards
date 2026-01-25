@@ -6,6 +6,17 @@ import { useSearchParams } from "next/navigation"
 import { useCards } from "@/app/lib/cards/useCards"
 import type { Card } from "@/app/lib/cards/types"
 
+import { useMounted } from "../lib/useMounted"
+
+type Direction = "front-to-back" | "back-to-front"
+
+function getPrompt(card: Card, dir: Direction) {
+  return dir === "front-to-back" ? card.front : card.back
+}
+function getAnswer(card: Card, dir: Direction) {
+  return dir === "front-to-back" ? card.back : card.front
+}
+
 function shuffle<T>(arr: T[]) {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
@@ -23,6 +34,9 @@ function matchFilters(card: Card, course: string, act: string, scene: string) {
 }
 
 export default function StudyClient() {
+  const mounted = useMounted()
+
+  const [direction, setDirection] = useState<Direction>("front-to-back")
   const { cards } = useCards()
   const params = useSearchParams()
 
@@ -74,8 +88,11 @@ export default function StudyClient() {
     setIndex(0)
     setIsFlipped(false)
   }
-
+  
+  
   // Empty states
+  if (!mounted) return <div className="p-4">Loading…</div>
+  
   if (pool.length === 0) {
     return (
       <main className="mx-auto max-w-xl p-4 space-y-4">
@@ -90,9 +107,23 @@ export default function StudyClient() {
       </main>
     )
   }
-
+  
   return (
     <main className="mx-auto max-w-xl p-4 space-y-4">
+      <div className="flex gap-2">
+        <button
+          className={`rounded border px-3 py-2 text-sm ${direction === "front-to-back" ? "bg-black text-white" : ""}`}
+          onClick={() => { setDirection("front-to-back"); setIsFlipped(false) }}
+        >
+          Front → Back
+        </button>
+        <button
+          className={`rounded border px-3 py-2 text-sm ${direction === "back-to-front" ? "bg-black text-white" : ""}`}
+          onClick={() => { setDirection("back-to-front"); setIsFlipped(false) }}
+        >
+          Back → Front
+        </button>
+      </div>
       <div className="flex items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold">Study</h1>
@@ -120,7 +151,7 @@ export default function StudyClient() {
           >
             <div className="text-xs text-gray-500 mb-2">{isFlipped ? "Back" : "Front"}</div>
             <div className="text-xl font-semibold leading-snug whitespace-pre-wrap">
-              {isFlipped ? current?.back : current?.front}
+              {current ? (isFlipped ? getAnswer(current, direction) : getPrompt(current, direction)) : ""}
             </div>
             {(current?.notes?.trim() && isFlipped) ? (
               <div className="mt-4 text-sm text-gray-600 whitespace-pre-wrap">

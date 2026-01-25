@@ -13,6 +13,17 @@
       "source": "seed"
     },
     {
+      "id": "seed-5",
+      "front": "Japan",
+      "back": "にほん",
+      "path": ["Japanese", "Act 6", "Scene 1"],
+      "tags": [],
+      "notes": "",
+      "createdAt": "2026-01-24T00:00:00.000Z",
+      "updatedAt": "2026-01-24T00:00:00.000Z",
+      "source": "seed"
+    },
+    {
       "id": "seed-2",
       "front": "Member",
       "back": "めんばあ",
