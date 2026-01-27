@@ -158,51 +158,74 @@ export default function EditPage() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-3">
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Course</label>
-            <input
-              className="w-full border rounded p-2"
-              value={form.course}
-              onChange={e => set("course", e.target.value)}
-              list="courses"
-            />
-            <datalist id="courses">
-              {courses.map(c => <option key={c} value={c} />)}
-            </datalist>
+        <div className="grid md:grid-cols-2 gap-3">
+          <div>
+            <label>Course</label>
+            <div className="flex gap-2">
+              <input
+                className="flex-1 border rounded p-2"
+                value={form.course}
+                onChange={e => set("course", e.target.value)}
+                placeholder="Type or pick…"
+              />
+              <select
+                className="w-40 border rounded p-2"
+                value=""
+                onChange={e => {
+                  if (e.target.value) set("course", e.target.value)
+                  e.currentTarget.value = ""
+                }}
+              >
+                <option value="">Select...</option>
+                {courses.map(c => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </div>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Act</label>
-            <input
-              className="w-full border rounded p-2"
-              value={form.act}
-              onChange={e => set("act", e.target.value)}
-              list="acts"
-            />
-            <datalist id="acts">
-              {uniq(cards.filter(c => (form.course ? c.path?.[0] === form.course : true)).map(c => c.path?.[1])).map(a => (
-                <option key={a} value={a} />
-              ))}
-            </datalist>
+          <div>
+            <label>Unit</label>
+            <div className="flex gap-2">
+              <input
+                className="flex-1 border rounded p-2"
+                value={form.act}
+                onChange={e => set("act", e.target.value)}
+                placeholder="Type or pick…"
+              />
+              <select
+                className="w-40 border rounded p-2"
+                value=""
+                onChange={e => {
+                  if (e.target.value) set("act", e.target.value)
+                  e.currentTarget.value = ""
+                }}
+              >
+                <option value="">Select...</option>
+                {acts.map(c => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </div>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Scene</label>
-            <input
-              className="w-full border rounded p-2"
-              value={form.scene}
-              onChange={e => set("scene", e.target.value)}
-              list="scenes"
-            />
-            <datalist id="scenes">
-              {uniq(cards
-                .filter(c => (form.course ? c.path?.[0] === form.course : true) && (form.act ? c.path?.[1] === form.act : true))
-                .map(c => c.path?.[2])
-              ).map(s => (
-                <option key={s} value={s} />
-              ))}
-            </datalist>
+          <div>
+            <label>Scene</label>
+            <div className="flex gap-2">
+              <input
+                className="flex-1 border rounded p-2"
+                value={form.scene}
+                onChange={e => set("scene", e.target.value)}
+                placeholder="Type or pick…"
+              />
+              <select
+                className="w-40 border rounded p-2"
+                value=""
+                onChange={e => {
+                  if (e.target.value) set("scene", e.target.value)
+                  e.currentTarget.value = ""
+                }}
+              >
+                <option value="">Select...</option>
+                {scenes.map(c => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </div>
           </div>
         </div>
 
