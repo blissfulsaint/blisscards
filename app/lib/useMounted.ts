@@ -9,7 +9,7 @@ function subscribe(callback: () => void) {
 
   // Fire callback on next microtask after hydration.
   // This makes the first client render match the server, then updates right after.
-  const id = queueMicrotask(callback)
+  queueMicrotask(callback)
 
   // queueMicrotask returns void, so just provide an unsubscribe no-op
   return () => {
