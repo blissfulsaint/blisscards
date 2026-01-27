@@ -43,7 +43,7 @@ export default function Home() {
   if (!mounted) {
     return (
       <main className="mx-auto max-w-xl p-4 space-y-4">
-        <h1 className="text-2xl font-bold">Flashcards</h1>
+        <h1 className="text-2xl font-bold">BlissCards</h1>
         <div className="text-sm text-gray-600">Loading…</div>
       </main>
     )
@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <main className="mx-auto max-w-xl p-4 space-y-4">
-      <h1 className="text-2xl font-bold">Flashcards</h1>
+      <h1 className="text-2xl font-bold">BlissCards</h1>
 
       <div className="space-y-2">
         <label className="block text-sm font-medium">Course</label>

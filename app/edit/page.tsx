@@ -161,15 +161,15 @@ export default function EditPage() {
         <div className="grid md:grid-cols-2 gap-3">
           <div>
             <label>Course</label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
-                className="flex-1 border rounded p-2"
+                className="min-w-0 flex-1 border rounded p-2"
                 value={form.course}
                 onChange={e => set("course", e.target.value)}
                 placeholder="Type or pick…"
               />
               <select
-                className="w-40 border rounded p-2"
+                className="sm:w-30 border rounded p-2"
                 value=""
                 onChange={e => {
                   if (e.target.value) set("course", e.target.value)
@@ -184,15 +184,15 @@ export default function EditPage() {
 
           <div>
             <label>Unit</label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
-                className="flex-1 border rounded p-2"
+                className="min-w-0 flex-1 border rounded p-2"
                 value={form.act}
                 onChange={e => set("act", e.target.value)}
                 placeholder="Type or pick…"
               />
               <select
-                className="w-40 border rounded p-2"
+                className="sm:w-30 border rounded p-2"
                 value=""
                 onChange={e => {
                   if (e.target.value) set("act", e.target.value)
@@ -207,15 +207,15 @@ export default function EditPage() {
 
           <div>
             <label>Scene</label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
-                className="flex-1 border rounded p-2"
+                className="min-w-0 flex-1 border rounded p-2"
                 value={form.scene}
                 onChange={e => set("scene", e.target.value)}
                 placeholder="Type or pick…"
               />
               <select
-                className="w-40 border rounded p-2"
+                className="sm:w-30 border rounded p-2"
                 value=""
                 onChange={e => {
                   if (e.target.value) set("scene", e.target.value)
