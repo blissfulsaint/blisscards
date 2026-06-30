@@ -128,8 +128,8 @@ export default function EditPage() {
       <div className="flex items-center justify-between gap-2">
         <h1 className="text-2xl font-bold">Edit Cards</h1>
         <div className="flex gap-2">
-          <Link className="rounded border px-3 py-2" href="/">Back</Link>
-          <Link className="rounded border px-3 py-2" href="/study">Study</Link>
+          <Link className="rounded border px-3 py-2 hover:bg-fg/10 transition" href="/">Back</Link>
+          <Link className="rounded border px-3 py-2 hover:bg-fg/10 transition" href="/study">Study</Link>
         </div>
       </div>
 
@@ -252,13 +252,13 @@ export default function EditPage() {
 
         <div className="flex gap-2">
           <button
-            className="rounded bg-primary text-primary-fg px-4 py-2"
+            className="rounded bg-primary text-primary-fg px-4 py-2 hover:brightness-110 hover:shadow-md transition"
             onClick={submit}
           >
             {form.id ? "Save changes" : "Add card"}
           </button>
           {form.id ? (
-            <button className="rounded border px-4 py-2" onClick={resetForm}>
+            <button className="rounded border px-4 py-2 hover:bg-fg/10 transition" onClick={resetForm}>
               Cancel
             </button>
           ) : null}
@@ -270,7 +270,7 @@ export default function EditPage() {
         <div className="flex items-center justify-between">
           <div className="text-sm font-semibold">Cards ({filteredCards.length})</div>
           <button
-            className="text-sm rounded border px-3 py-2"
+            className="text-sm rounded border px-3 py-2 hover:bg-fg/10 transition"
             onClick={() => { setCourse(""); setAct(""); setScene("") }}
           >
             Clear filters
@@ -314,11 +314,11 @@ export default function EditPage() {
                 </div>
               </div>
               <div className="flex gap-2">
-                <button className="rounded border px-3 py-2" onClick={() => startEdit(card)}>
+                <button className="rounded border px-3 py-2 hover:bg-fg/10 transition" onClick={() => startEdit(card)}>
                   Edit
                 </button>
                 <button
-                  className="rounded border px-3 py-2"
+                  className="rounded border px-3 py-2 hover:bg-fg/10 transition"
                   onClick={() => {
                     if (confirm("Delete this card?")) removeCard(card.id)
                   }}

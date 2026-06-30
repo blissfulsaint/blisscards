@@ -79,15 +79,15 @@ export default function Home() {
 
       <div className="flex gap-2">
         <Link
-          className="flex-1 text-center rounded bg-primary text-primary-fg p-3"
+          className="flex-1 text-center rounded bg-primary text-primary-fg p-3 hover:brightness-110 hover:shadow-md transition"
           href={`/study?course=${encodeURIComponent(course)}&act=${encodeURIComponent(act)}&scene=${encodeURIComponent(scene)}`}
         >
           Study ({filteredCount})
         </Link>
-        <Link className="flex-1 text-center rounded border p-3" href="/edit">
+        <Link className="flex-1 text-center rounded border p-3 hover:bg-fg/10 transition" href="/edit">
           Edit Cards
         </Link>
-        <Link className="flex-1 text-center rounded border p-3" href="/import-export">
+        <Link className="flex-1 text-center rounded border p-3 hover:bg-fg/10 transition" href="/import-export">
           Import/Export
         </Link>
       </div>

@@ -101,8 +101,8 @@ export default function StudyClient() {
           No cards match your current filter.
         </p>
         <div className="flex gap-2">
-          <Link className="rounded border px-3 py-2" href="/">Back</Link>
-          <Link className="rounded bg-primary text-primary-fg px-3 py-2" href="/edit">Add Cards</Link>
+          <Link className="rounded border px-3 py-2 hover:bg-fg/10 transition" href="/">Back</Link>
+          <Link className="rounded bg-primary text-primary-fg px-3 py-2 hover:brightness-110 hover:shadow-md transition" href="/edit">Add Cards</Link>
         </div>
       </main>
     )
@@ -112,13 +112,13 @@ export default function StudyClient() {
     <main className="mx-auto max-w-xl p-4 space-y-4">
       <div className="flex gap-2">
         <button
-          className={`rounded border px-3 py-2 text-sm ${direction === "front-to-back" ? "bg-primary text-primary-fg" : ""}`}
+          className={`rounded border px-3 py-2 text-sm cursor-pointer hover:brightness-110 hover:shadow-md transition ${direction === "front-to-back" ? "bg-primary text-primary-fg" : "hover:bg-surface"}`}
           onClick={() => { setDirection("front-to-back"); setIsFlipped(false) }}
         >
           Front → Back
         </button>
         <button
-          className={`rounded border px-3 py-2 text-sm ${direction === "back-to-front" ? "bg-primary text-primary-fg" : ""}`}
+          className={`rounded border px-3 py-2 text-sm cursor-pointer hover:brightness-110 hover:shadow-md transition ${direction === "back-to-front" ? "bg-primary text-primary-fg" : "hover:bg-surface"}`}
           onClick={() => { setDirection("back-to-front"); setIsFlipped(false) }}
         >
           Back → Front
@@ -131,7 +131,7 @@ export default function StudyClient() {
             {course || "All"}{act ? ` • ${act}` : ""}{scene ? ` • ${scene}` : ""} • {mode === "main" ? "Main" : "Missed"}
           </p>
         </div>
-        <Link className="rounded border px-3 py-2" href="/">Exit</Link>
+        <Link className="rounded border px-3 py-2 hover:bg-fg/10 transition" href="/">Exit</Link>
       </div>
 
       <div className="text-sm text-muted flex justify-between">
@@ -174,13 +174,13 @@ export default function StudyClient() {
 
           <div className="grid grid-cols-2 gap-3">
             <button
-              className="rounded-xl border p-3"
+              className="rounded-xl border p-3 cursor-pointer hover:bg-fg/10 transition"
               onClick={markMissed}
             >
               ❌ Missed
             </button>
             <button
-              className="rounded-xl bg-primary text-primary-fg p-3"
+              className="rounded-xl bg-primary text-primary-fg p-3 cursor-pointer hover:brightness-110 hover:shadow-md transition"
               onClick={markGotIt}
             >
               ✅ Got it
@@ -198,16 +198,16 @@ export default function StudyClient() {
 
           <div className="flex flex-col gap-2">
             {missed.length > 0 && mode === "main" ? (
-              <button className="rounded bg-primary text-primary-fg px-3 py-2" onClick={studyMissed}>
+              <button className="rounded bg-primary text-primary-fg px-3 py-2 cursor-pointer hover:brightness-110 hover:shadow-md transition" onClick={studyMissed}>
                 Study missed cards ({missed.length})
               </button>
             ) : null}
 
-            <button className="rounded border px-3 py-2" onClick={restartMain}>
+            <button className="rounded border px-3 py-2 cursor-pointer hover:bg-fg/10 transition" onClick={restartMain}>
               Restart session
             </button>
 
-            <Link className="rounded border px-3 py-2 text-center" href="/edit">
+            <Link className="rounded border px-3 py-2 text-center hover:bg-fg/10 transition" href="/edit">
               Edit cards
             </Link>
           </div>

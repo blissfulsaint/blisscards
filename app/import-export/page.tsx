@@ -128,7 +128,7 @@ export default function ImportExportPage() {
     <main className="mx-auto max-w-xl p-4 space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Import / Export</h1>
-        <Link className="rounded border px-3 py-2" href="/">Back</Link>
+        <Link className="rounded border px-3 py-2 hover:bg-fg/10 transition" href="/">Back</Link>
       </div>
 
       <section className="rounded-xl border p-4 space-y-3 bg-surface">
@@ -136,7 +136,7 @@ export default function ImportExportPage() {
         <p className="text-sm text-muted">
           Download a JSON backup you can import on another device.
         </p>
-        <button className="rounded bg-primary text-primary-fg px-4 py-2" onClick={exportJson}>
+        <button className="rounded bg-primary text-primary-fg px-4 py-2 hover:brightness-110 hover:shadow-md transition" onClick={exportJson}>
           Download backup JSON ({cards.length} cards)
         </button>
       </section>
