@@ -2,6 +2,7 @@
 
 /* ── Light theme defaults ───────────────────────────── */
 :root {
+  --glow-primary: color-mix(in oklch, var(--color-primary) 40%, transparent);
   --color-bg:         #ffffff;
   --color-fg:         #171717;
   --color-surface:    #f9f9f9;

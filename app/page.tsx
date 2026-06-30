@@ -79,7 +79,7 @@ export default function Home() {
 
       <div className="flex gap-2">
         <Link
-          className="flex-1 text-center rounded bg-primary text-primary-fg p-3 hover:brightness-110 hover:shadow-md transition"
+          className="flex-1 text-center rounded bg-primary text-primary-fg p-3 hover:brightness-110 hover:[box-shadow:0_0_8px_2px_var(--glow-primary)] transition"
           href={`/study?course=${encodeURIComponent(course)}&act=${encodeURIComponent(act)}&scene=${encodeURIComponent(scene)}`}
         >
           Study ({filteredCount})

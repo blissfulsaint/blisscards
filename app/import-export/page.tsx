@@ -136,7 +136,7 @@ export default function ImportExportPage() {
         <p className="text-sm text-muted">
           Download a JSON backup you can import on another device.
         </p>
-        <button className="rounded bg-primary text-primary-fg px-4 py-2 hover:brightness-110 hover:shadow-md transition" onClick={exportJson}>
+        <button className="rounded bg-primary text-primary-fg px-4 py-2 hover:brightness-110 hover:[box-shadow:0_0_8px_2px_var(--glow-primary)] transition" onClick={exportJson}>
           Download backup JSON ({cards.length} cards)
         </button>
       </section>

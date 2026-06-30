@@ -252,7 +252,7 @@ export default function EditPage() {
 
         <div className="flex gap-2">
           <button
-            className="rounded bg-primary text-primary-fg px-4 py-2 hover:brightness-110 hover:shadow-md transition"
+            className="rounded bg-primary text-primary-fg px-4 py-2 hover:brightness-110 hover:[box-shadow:0_0_8px_2px_var(--glow-primary)] transition"
             onClick={submit}
           >
             {form.id ? "Save changes" : "Add card"}
