@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Applies saved theme before first paint to prevent flash */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('blisscards_theme');if(t==='light'||t==='dark'||t==='ocean'||t==='rose'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('blisscards_theme');if(['light','dark','ocean','rose','forest','grape','crimson','sunset','sky','sakura'].includes(t)){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();` }} />
       </head>
       <body className={`${josefinSans.className} antialiased`}>
         {children}

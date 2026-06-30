@@ -71,6 +71,72 @@
   --color-primary-fg: #ffffff;
 }
 
+[data-theme="forest"] {
+  --color-bg:         #0d1f12;
+  --color-fg:         #d1e8d4;
+  --color-surface:    #162b1a;
+  --color-border:     #2a4a2e;
+  --color-muted:      #7fb88a;
+  --color-subtle:     #5a8a64;
+  --color-primary:    #4ade80;
+  --color-primary-fg: #0d1f12;
+}
+
+[data-theme="grape"] {
+  --color-bg:         #1a0d2e;
+  --color-fg:         #e8d5f5;
+  --color-surface:    #261442;
+  --color-border:     #3d2068;
+  --color-muted:      #b08fd4;
+  --color-subtle:     #8b6ab8;
+  --color-primary:    #a855f7;
+  --color-primary-fg: #1a0d2e;
+}
+
+[data-theme="crimson"] {
+  --color-bg:         #1a0000;
+  --color-fg:         #f5d4d4;
+  --color-surface:    #2a0808;
+  --color-border:     #4a1010;
+  --color-muted:      #d48a8a;
+  --color-subtle:     #b86060;
+  --color-primary:    #dc2626;
+  --color-primary-fg: #ffffff;
+}
+
+[data-theme="sunset"] {
+  --color-bg:         #fff7ed;
+  --color-fg:         #1c0f00;
+  --color-surface:    #ffedd5;
+  --color-border:     #fed7aa;
+  --color-muted:      #9a3412;
+  --color-subtle:     #c2410c;
+  --color-primary:    #ea580c;
+  --color-primary-fg: #ffffff;
+}
+
+[data-theme="sky"] {
+  --color-bg:         #f0f9ff;
+  --color-fg:         #0c2340;
+  --color-surface:    #e0f2fe;
+  --color-border:     #bae6fd;
+  --color-muted:      #0369a1;
+  --color-subtle:     #0284c7;
+  --color-primary:    #0284c7;
+  --color-primary-fg: #ffffff;
+}
+
+[data-theme="sakura"] {
+  --color-bg:         #fdf2f8;
+  --color-fg:         #2d0f1a;
+  --color-surface:    #fce4f0;
+  --color-border:     #f8c8e0;
+  --color-muted:      #9b3060;
+  --color-subtle:     #c24878;
+  --color-primary:    #db6895;
+  --color-primary-fg: #ffffff;
+}
+
 /* ── Tailwind v4 token mapping ──────────────────────── */
 @theme inline {
   --color-bg:         var(--color-bg);
