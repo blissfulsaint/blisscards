@@ -1,26 +1,159 @@
 @import "tailwindcss";
 
+/* ── Light theme defaults ───────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --glow-primary: color-mix(in oklch, var(--color-primary) 40%, transparent);
+  --color-bg:         #ffffff;
+  --color-fg:         #171717;
+  --color-surface:    #f9f9f9;
+  --color-border:     #e5e5e5;
+  --color-muted:      #4b5563;
+  --color-subtle:     #6b7280;
+  --color-primary:    #171717;
+  --color-primary-fg: #ffffff;
 }
 
+/* ── System auto-dark (only when no explicit theme is set) ── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg:         #0a0a0a;
+    --color-fg:         #ededed;
+    --color-surface:    #1a1a1a;
+    --color-border:     #2e2e2e;
+    --color-muted:      #a3a3a3;
+    --color-subtle:     #737373;
+    --color-primary:    #ededed;
+    --color-primary-fg: #0a0a0a;
+  }
+}
+
+/* ── Explicit theme overrides ───────────────────────── */
+[data-theme="light"] {
+  --color-bg:         #ffffff;
+  --color-fg:         #171717;
+  --color-surface:    #f9f9f9;
+  --color-border:     #e5e5e5;
+  --color-muted:      #4b5563;
+  --color-subtle:     #6b7280;
+  --color-primary:    #171717;
+  --color-primary-fg: #ffffff;
+}
+
+[data-theme="dark"] {
+  --color-bg:         #0a0a0a;
+  --color-fg:         #ededed;
+  --color-surface:    #1a1a1a;
+  --color-border:     #2e2e2e;
+  --color-muted:      #a3a3a3;
+  --color-subtle:     #737373;
+  --color-primary:    #ededed;
+  --color-primary-fg: #0a0a0a;
+}
+
+[data-theme="ocean"] {
+  --color-bg:         #0f172a;
+  --color-fg:         #e2e8f0;
+  --color-surface:    #1e293b;
+  --color-border:     #334155;
+  --color-muted:      #94a3b8;
+  --color-subtle:     #64748b;
+  --color-primary:    #38bdf8;
+  --color-primary-fg: #0f172a;
+}
+
+[data-theme="rose"] {
+  --color-bg:         #fff1f2;
+  --color-fg:         #1c1917;
+  --color-surface:    #ffe4e6;
+  --color-border:     #fecdd3;
+  --color-muted:      #9f1239;
+  --color-subtle:     #be123c;
+  --color-primary:    #e11d48;
+  --color-primary-fg: #ffffff;
+}
+
+[data-theme="forest"] {
+  --color-bg:         #0d1f12;
+  --color-fg:         #d1e8d4;
+  --color-surface:    #162b1a;
+  --color-border:     #2a4a2e;
+  --color-muted:      #7fb88a;
+  --color-subtle:     #5a8a64;
+  --color-primary:    #4ade80;
+  --color-primary-fg: #0d1f12;
+}
+
+[data-theme="grape"] {
+  --color-bg:         #1a0d2e;
+  --color-fg:         #e8d5f5;
+  --color-surface:    #261442;
+  --color-border:     #3d2068;
+  --color-muted:      #b08fd4;
+  --color-subtle:     #8b6ab8;
+  --color-primary:    #a855f7;
+  --color-primary-fg: #1a0d2e;
+}
+
+[data-theme="crimson"] {
+  --color-bg:         #1a0000;
+  --color-fg:         #f5d4d4;
+  --color-surface:    #2a0808;
+  --color-border:     #4a1010;
+  --color-muted:      #d48a8a;
+  --color-subtle:     #b86060;
+  --color-primary:    #dc2626;
+  --color-primary-fg: #ffffff;
+}
+
+[data-theme="sunset"] {
+  --color-bg:         #fff7ed;
+  --color-fg:         #1c0f00;
+  --color-surface:    #ffedd5;
+  --color-border:     #fed7aa;
+  --color-muted:      #9a3412;
+  --color-subtle:     #c2410c;
+  --color-primary:    #ea580c;
+  --color-primary-fg: #ffffff;
+}
+
+[data-theme="sky"] {
+  --color-bg:         #f0f9ff;
+  --color-fg:         #0c2340;
+  --color-surface:    #e0f2fe;
+  --color-border:     #bae6fd;
+  --color-muted:      #0369a1;
+  --color-subtle:     #0284c7;
+  --color-primary:    #0284c7;
+  --color-primary-fg: #ffffff;
+}
+
+[data-theme="sakura"] {
+  --color-bg:         #fdf2f8;
+  --color-fg:         #2d0f1a;
+  --color-surface:    #fce4f0;
+  --color-border:     #f8c8e0;
+  --color-muted:      #9b3060;
+  --color-subtle:     #c24878;
+  --color-primary:    #db6895;
+  --color-primary-fg: #ffffff;
+}
+
+/* ── Tailwind v4 token mapping ──────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg:         var(--color-bg);
+  --color-fg:         var(--color-fg);
+  --color-surface:    var(--color-surface);
+  --color-border:     var(--color-border);
+  --color-muted:      var(--color-muted);
+  --color-subtle:     var(--color-subtle);
+  --color-primary:    var(--color-primary);
+  --color-primary-fg: var(--color-primary-fg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-bg);
+  color: var(--color-fg);
   font-family: Arial, Helvetica, sans-serif;
 }

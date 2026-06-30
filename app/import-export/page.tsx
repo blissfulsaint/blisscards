@@ -80,7 +80,7 @@ export default function ImportExportPage() {
     return (
       <main className="mx-auto max-w-xl p-4 space-y-4">
         <h1 className="text-2xl font-bold">Import / Export</h1>
-        <div className="text-sm text-gray-600">Loading…</div>
+        <div className="text-sm text-muted">Loading…</div>
       </main>
     )
   }
@@ -128,22 +128,22 @@ export default function ImportExportPage() {
     <main className="mx-auto max-w-xl p-4 space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Import / Export</h1>
-        <Link className="rounded border px-3 py-2" href="/">Back</Link>
+        <Link className="rounded border px-3 py-2 hover:bg-fg/10 transition" href="/">Back</Link>
       </div>
 
-      <section className="rounded-xl border p-4 space-y-3">
+      <section className="rounded-xl border p-4 space-y-3 bg-surface">
         <div className="font-semibold">Export</div>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted">
           Download a JSON backup you can import on another device.
         </p>
-        <button className="rounded bg-black text-white px-4 py-2" onClick={exportJson}>
+        <button className="rounded bg-primary text-primary-fg px-4 py-2 hover:brightness-110 hover:[box-shadow:0_0_8px_2px_var(--glow-primary)] transition" onClick={exportJson}>
           Download backup JSON ({cards.length} cards)
         </button>
       </section>
 
-      <section className="rounded-xl border p-4 space-y-3">
+      <section className="rounded-xl border p-4 space-y-3 bg-surface">
         <div className="font-semibold">Import</div>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted">
           Import a JSON file exported from this app. Choose merge or replace.
         </p>
 
@@ -151,7 +151,7 @@ export default function ImportExportPage() {
           <div className="flex items-center justify-between gap-3">
             <div className="text-sm">
               <div className="font-medium">Merge</div>
-              <div className="text-gray-600">Keeps existing cards; imported cards overwrite on same ID.</div>
+              <div className="text-muted">Keeps existing cards; imported cards overwrite on same ID.</div>
             </div>
             <input
               type="file"
@@ -167,7 +167,7 @@ export default function ImportExportPage() {
           <div className="flex items-center justify-between gap-3">
             <div className="text-sm">
               <div className="font-medium">Replace</div>
-              <div className="text-gray-600">Deletes all current cards and replaces with the import.</div>
+              <div className="text-muted">Deletes all current cards and replaces with the import.</div>
             </div>
             <input
               type="file"
@@ -182,13 +182,13 @@ export default function ImportExportPage() {
         </div>
 
         {status ? (
-          <div className="text-sm text-gray-700">{status}</div>
+          <div className="text-sm text-muted">{status}</div>
         ) : null}
       </section>
 
-      <section className="rounded-xl border p-4 space-y-2">
+      <section className="rounded-xl border p-4 space-y-2 bg-surface">
         <div className="font-semibold">Tip</div>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted">
           This app also accepts importing a raw array of cards (not wrapped in a store object).
         </p>
       </section>

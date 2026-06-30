@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useCards } from "./lib/cards/useCards";
 import { useMounted } from "@/app/lib/useMounted";
+import { ThemePicker } from "@/app/components/ThemePicker";
 
 function uniq(values: (string | undefined)[]) {
   return Array.from(new Set(values.filter(Boolean))) as string[]
@@ -44,30 +45,33 @@ export default function Home() {
     return (
       <main className="mx-auto max-w-xl p-4 space-y-4">
         <h1 className="text-2xl font-bold">BlissCards</h1>
-        <div className="text-sm text-gray-600">Loading…</div>
+        <div className="text-sm text-muted">Loading…</div>
       </main>
     )
   }
 
   return (
     <main className="mx-auto max-w-xl p-4 space-y-4">
-      <h1 className="text-2xl font-bold">BlissCards</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">BlissCards</h1>
+        <ThemePicker />
+      </div>
 
       <div className="space-y-2">
         <label className="block text-sm font-medium">Course</label>
-        <select className="w-full border rounded p-2" value={course} onChange={e => { setCourse(e.target.value); setAct(""); setScene("") }}>
+        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={course} onChange={e => { setCourse(e.target.value); setAct(""); setScene("") }}>
           <option value="">All</option>
           {courses.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
 
         <label className="block text-sm font-medium">Act</label>
-        <select className="w-full border rounded p-2" value={act} onChange={e => { setAct(e.target.value); setScene("") }} disabled={!course}>
+        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={act} onChange={e => { setAct(e.target.value); setScene("") }} disabled={!course}>
           <option value="">All</option>
           {acts.map(a => <option key={a} value={a}>{a}</option>)}
         </select>
 
         <label className="block text-sm font-medium">Scene</label>
-        <select className="w-full border rounded p-2" value={scene} onChange={e => setScene(e.target.value)} disabled={!course || !act}>
+        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={scene} onChange={e => setScene(e.target.value)} disabled={!course || !act}>
           <option value="">All</option>
           {scenes.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
@@ -75,15 +79,15 @@ export default function Home() {
 
       <div className="flex gap-2">
         <Link
-          className="flex-1 text-center rounded bg-black text-white p-3"
+          className="flex-1 text-center rounded bg-primary text-primary-fg p-3 hover:brightness-110 hover:[box-shadow:0_0_8px_2px_var(--glow-primary)] transition"
           href={`/study?course=${encodeURIComponent(course)}&act=${encodeURIComponent(act)}&scene=${encodeURIComponent(scene)}`}
         >
           Study ({filteredCount})
         </Link>
-        <Link className="flex-1 text-center rounded border p-3" href="/edit">
+        <Link className="flex-1 text-center rounded border p-3 hover:bg-fg/10 transition" href="/edit">
           Edit Cards
         </Link>
-        <Link className="flex-1 text-center rounded border p-3" href="/import-export">
+        <Link className="flex-1 text-center rounded border p-3 hover:bg-fg/10 transition" href="/import-export">
           Import/Export
         </Link>
       </div>
