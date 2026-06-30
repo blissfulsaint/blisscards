@@ -22,10 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${josefinSans.className} antialiased`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Applies saved theme before first paint to prevent flash */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('blisscards_theme');if(t==='light'||t==='dark'||t==='ocean'||t==='rose'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();` }} />
+      </head>
+      <body className={`${josefinSans.className} antialiased`}>
         {children}
       </body>
     </html>

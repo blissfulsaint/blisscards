@@ -120,7 +120,7 @@ export default function EditPage() {
 
     resetForm()
   }
-  
+
   if (!mounted) return <div className="p-4">Loading…</div>
 
   return (
@@ -134,14 +134,14 @@ export default function EditPage() {
       </div>
 
       {/* Form */}
-      <section className="rounded-xl border p-4 space-y-3">
+      <section className="rounded-xl border p-4 space-y-3 bg-surface">
         <div className="text-sm font-semibold">{form.id ? "Edit card" : "Add a new card"}</div>
 
         <div className="grid md:grid-cols-2 gap-3">
           <div className="space-y-1">
             <label className="text-sm font-medium">Front</label>
             <textarea
-              className="w-full border rounded p-2 min-h-[80px]"
+              className="w-full border rounded p-2 min-h-[80px] bg-bg text-fg"
               value={form.front}
               onChange={e => set("front", e.target.value)}
               placeholder="e.g., Everyone (used in addressing a group)"
@@ -150,7 +150,7 @@ export default function EditPage() {
           <div className="space-y-1">
             <label className="text-sm font-medium">Back</label>
             <textarea
-              className="w-full border rounded p-2 min-h-[80px]"
+              className="w-full border rounded p-2 min-h-[80px] bg-bg text-fg"
               value={form.back}
               onChange={e => set("back", e.target.value)}
               placeholder="e.g., みなさん"
@@ -163,13 +163,13 @@ export default function EditPage() {
             <label>Course</label>
             <div className="flex flex-col sm:flex-row gap-2">
               <input
-                className="min-w-0 flex-1 border rounded p-2"
+                className="min-w-0 flex-1 border rounded p-2 bg-bg text-fg"
                 value={form.course}
                 onChange={e => set("course", e.target.value)}
                 placeholder="Type or pick…"
               />
               <select
-                className="sm:w-30 border rounded p-2"
+                className="sm:w-30 border rounded p-2 bg-bg text-fg appearance-none"
                 value=""
                 onChange={e => {
                   if (e.target.value) set("course", e.target.value)
@@ -186,13 +186,13 @@ export default function EditPage() {
             <label>Unit</label>
             <div className="flex flex-col sm:flex-row gap-2">
               <input
-                className="min-w-0 flex-1 border rounded p-2"
+                className="min-w-0 flex-1 border rounded p-2 bg-bg text-fg"
                 value={form.act}
                 onChange={e => set("act", e.target.value)}
                 placeholder="Type or pick…"
               />
               <select
-                className="sm:w-30 border rounded p-2"
+                className="sm:w-30 border rounded p-2 bg-bg text-fg appearance-none"
                 value=""
                 onChange={e => {
                   if (e.target.value) set("act", e.target.value)
@@ -209,13 +209,13 @@ export default function EditPage() {
             <label>Scene</label>
             <div className="flex flex-col sm:flex-row gap-2">
               <input
-                className="min-w-0 flex-1 border rounded p-2"
+                className="min-w-0 flex-1 border rounded p-2 bg-bg text-fg"
                 value={form.scene}
                 onChange={e => set("scene", e.target.value)}
                 placeholder="Type or pick…"
               />
               <select
-                className="sm:w-30 border rounded p-2"
+                className="sm:w-30 border rounded p-2 bg-bg text-fg appearance-none"
                 value=""
                 onChange={e => {
                   if (e.target.value) set("scene", e.target.value)
@@ -233,7 +233,7 @@ export default function EditPage() {
           <div className="space-y-1">
             <label className="text-sm font-medium">Tags (comma separated)</label>
             <input
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 bg-bg text-fg"
               value={form.tags}
               onChange={e => set("tags", e.target.value)}
               placeholder="e.g., particles, polite, greeting"
@@ -242,7 +242,7 @@ export default function EditPage() {
           <div className="space-y-1">
             <label className="text-sm font-medium">Notes (optional)</label>
             <input
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 bg-bg text-fg"
               value={form.notes}
               onChange={e => set("notes", e.target.value)}
               placeholder="e.g., Used in formal contexts"
@@ -252,7 +252,7 @@ export default function EditPage() {
 
         <div className="flex gap-2">
           <button
-            className="rounded bg-black text-white px-4 py-2"
+            className="rounded bg-primary text-primary-fg px-4 py-2"
             onClick={submit}
           >
             {form.id ? "Save changes" : "Add card"}
@@ -266,7 +266,7 @@ export default function EditPage() {
       </section>
 
       {/* Filters */}
-      <section className="rounded-xl border p-4 space-y-3">
+      <section className="rounded-xl border p-4 space-y-3 bg-surface">
         <div className="flex items-center justify-between">
           <div className="text-sm font-semibold">Cards ({filteredCards.length})</div>
           <button
@@ -280,7 +280,7 @@ export default function EditPage() {
         <div className="grid md:grid-cols-3 gap-3">
           <div className="space-y-1">
             <label className="text-sm font-medium">Course</label>
-            <select className="w-full border rounded p-2" value={course} onChange={e => { setCourse(e.target.value); setAct(""); setScene("") }}>
+            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={course} onChange={e => { setCourse(e.target.value); setAct(""); setScene("") }}>
               <option value="">All</option>
               {courses.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
@@ -288,7 +288,7 @@ export default function EditPage() {
 
           <div className="space-y-1">
             <label className="text-sm font-medium">Act</label>
-            <select className="w-full border rounded p-2" value={act} onChange={e => { setAct(e.target.value); setScene("") }} disabled={!course}>
+            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={act} onChange={e => { setAct(e.target.value); setScene("") }} disabled={!course}>
               <option value="">All</option>
               {acts.map(a => <option key={a} value={a}>{a}</option>)}
             </select>
@@ -296,7 +296,7 @@ export default function EditPage() {
 
           <div className="space-y-1">
             <label className="text-sm font-medium">Scene</label>
-            <select className="w-full border rounded p-2" value={scene} onChange={e => setScene(e.target.value)} disabled={!course || !act}>
+            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={scene} onChange={e => setScene(e.target.value)} disabled={!course || !act}>
               <option value="">All</option>
               {scenes.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
@@ -308,8 +308,8 @@ export default function EditPage() {
             <div key={card.id} className="py-3 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
               <div className="flex-1">
                 <div className="font-medium whitespace-pre-wrap">{card.front}</div>
-                <div className="text-sm text-gray-600 whitespace-pre-wrap">{card.back}</div>
-                <div className="text-xs text-gray-500 mt-1">
+                <div className="text-sm text-muted whitespace-pre-wrap">{card.back}</div>
+                <div className="text-xs text-subtle mt-1">
                   {(card.path ?? []).filter(Boolean).join(" • ")}
                 </div>
               </div>
@@ -329,7 +329,7 @@ export default function EditPage() {
             </div>
           ))}
           {filteredCards.length === 0 ? (
-            <div className="py-6 text-sm text-gray-600">No cards match your filters.</div>
+            <div className="py-6 text-sm text-muted">No cards match your filters.</div>
           ) : null}
         </div>
       </section>
