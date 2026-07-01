@@ -24,8 +24,8 @@ type FormState = {
   front: string
   back: string
   course: string
-  act: string
-  scene: string
+  unit: string
+  lesson: string
   tags: string
   notes: string
 }
@@ -38,26 +38,26 @@ export default function EditPage() {
   const courses = useMemo(() => uniq(cards.map(c => c.path?.[0])), [cards])
 
   const [course, setCourse] = useState("")
-  const acts = useMemo(() => uniq(cards.filter(c => !course || c.path?.[0] === course).map(c => c.path?.[1])), [cards, course])
-  const [act, setAct] = useState("")
-  const scenes = useMemo(() => uniq(cards.filter(c => (!course || c.path?.[0] === course) && (!act || c.path?.[1] === act)).map(c => c.path?.[2])), [cards, course, act])
-  const [scene, setScene] = useState("")
+  const units = useMemo(() => uniq(cards.filter(c => !course || c.path?.[0] === course).map(c => c.path?.[1])), [cards, course])
+  const [unit, setUnit] = useState("")
+  const lessons = useMemo(() => uniq(cards.filter(c => (!course || c.path?.[0] === course) && (!unit || c.path?.[1] === unit)).map(c => c.path?.[2])), [cards, course, unit])
+  const [lesson, setLesson] = useState("")
 
   const filteredCards = useMemo(() => {
     return cards.filter(c => {
       if (course && c.path?.[0] !== course) return false
-      if (act && c.path?.[1] !== act) return false
-      if (scene && c.path?.[2] !== scene) return false
+      if (unit && c.path?.[1] !== unit) return false
+      if (lesson && c.path?.[2] !== lesson) return false
       return true
     })
-  }, [cards, course, act, scene])
+  }, [cards, course, unit, lesson])
 
   const [form, setForm] = useState<FormState>({
     front: "",
     back: "",
     course: courses[0] ?? "Japanese",
-    act: "Unsorted",
-    scene: "Unsorted",
+    unit: "Unsorted",
+    lesson: "Unsorted",
     tags: "",
     notes: ""
   })
@@ -72,8 +72,8 @@ export default function EditPage() {
       front: card.front,
       back: card.back,
       course: card.path?.[0] ?? "Japanese",
-      act: card.path?.[1] ?? "Unsorted",
-      scene: card.path?.[2] ?? "Unsorted",
+      unit: card.path?.[1] ?? "Unsorted",
+      lesson: card.path?.[2] ?? "Unsorted",
       tags: (card.tags ?? []).join(", "),
       notes: card.notes ?? ""
     })
@@ -86,8 +86,8 @@ export default function EditPage() {
       front: "",
       back: "",
       course: form.course || "Japanese",
-      act: "Unsorted",
-      scene: "Unsorted",
+      unit: "Unsorted",
+      lesson: "Unsorted",
       tags: "",
       notes: ""
     })
@@ -107,7 +107,7 @@ export default function EditPage() {
       id: form.id ?? uid(),
       front,
       back,
-      path: [form.course.trim() || "Japanese", form.act.trim() || "Unsorted", form.scene.trim() || "Unsorted"],
+      path: [form.course.trim() || "Japanese", form.unit.trim() || "Unsorted", form.lesson.trim() || "Unsorted"],
       tags,
       notes: form.notes.trim() ? form.notes.trim() : undefined,
       createdAt: form.id ? (cards.find(c => c.id === form.id)?.createdAt ?? nowISO()) : nowISO(),
@@ -187,43 +187,43 @@ export default function EditPage() {
             <div className="flex flex-col sm:flex-row gap-2">
               <input
                 className="min-w-0 flex-1 border rounded p-2 bg-bg text-fg"
-                value={form.act}
-                onChange={e => set("act", e.target.value)}
+                value={form.unit}
+                onChange={e => set("unit", e.target.value)}
                 placeholder="Type or pick…"
               />
               <select
                 className="sm:w-30 border rounded p-2 bg-bg text-fg appearance-none"
                 value=""
                 onChange={e => {
-                  if (e.target.value) set("act", e.target.value)
+                  if (e.target.value) set("unit", e.target.value)
                   e.currentTarget.value = ""
                 }}
               >
                 <option value="">Select...</option>
-                {acts.map(c => <option key={c} value={c}>{c}</option>)}
+                {units.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
             </div>
           </div>
 
           <div>
-            <label>Scene</label>
+            <label>Lesson</label>
             <div className="flex flex-col sm:flex-row gap-2">
               <input
                 className="min-w-0 flex-1 border rounded p-2 bg-bg text-fg"
-                value={form.scene}
-                onChange={e => set("scene", e.target.value)}
+                value={form.lesson}
+                onChange={e => set("lesson", e.target.value)}
                 placeholder="Type or pick…"
               />
               <select
                 className="sm:w-30 border rounded p-2 bg-bg text-fg appearance-none"
                 value=""
                 onChange={e => {
-                  if (e.target.value) set("scene", e.target.value)
+                  if (e.target.value) set("lesson", e.target.value)
                   e.currentTarget.value = ""
                 }}
               >
                 <option value="">Select...</option>
-                {scenes.map(c => <option key={c} value={c}>{c}</option>)}
+                {lessons.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
             </div>
           </div>
@@ -271,7 +271,7 @@ export default function EditPage() {
           <div className="text-sm font-semibold">Cards ({filteredCards.length})</div>
           <button
             className="text-sm rounded border px-3 py-2 hover:bg-fg/10 transition"
-            onClick={() => { setCourse(""); setAct(""); setScene("") }}
+            onClick={() => { setCourse(""); setUnit(""); setLesson("") }}
           >
             Clear filters
           </button>
@@ -280,25 +280,25 @@ export default function EditPage() {
         <div className="grid md:grid-cols-3 gap-3">
           <div className="space-y-1">
             <label className="text-sm font-medium">Course</label>
-            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={course} onChange={e => { setCourse(e.target.value); setAct(""); setScene("") }}>
+            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={course} onChange={e => { setCourse(e.target.value); setUnit(""); setLesson("") }}>
               <option value="">All</option>
               {courses.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
 
           <div className="space-y-1">
-            <label className="text-sm font-medium">Act</label>
-            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={act} onChange={e => { setAct(e.target.value); setScene("") }} disabled={!course}>
+            <label className="text-sm font-medium">Unit</label>
+            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={unit} onChange={e => { setUnit(e.target.value); setLesson("") }} disabled={!course}>
               <option value="">All</option>
-              {acts.map(a => <option key={a} value={a}>{a}</option>)}
+              {units.map(a => <option key={a} value={a}>{a}</option>)}
             </select>
           </div>
 
           <div className="space-y-1">
-            <label className="text-sm font-medium">Scene</label>
-            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={scene} onChange={e => setScene(e.target.value)} disabled={!course || !act}>
+            <label className="text-sm font-medium">Lesson</label>
+            <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={lesson} onChange={e => setLesson(e.target.value)} disabled={!course || !unit}>
               <option value="">All</option>
-              {scenes.map(s => <option key={s} value={s}>{s}</option>)}
+              {lessons.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
         </div>
