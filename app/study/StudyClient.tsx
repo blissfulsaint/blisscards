@@ -26,10 +26,10 @@ function shuffle<T>(arr: T[]) {
   return a
 }
 
-function matchFilters(card: Card, course: string, act: string, scene: string) {
+function matchFilters(card: Card, course: string, unit: string, lesson: string) {
   if (course && card.path?.[0] !== course) return false
-  if (act && card.path?.[1] !== act) return false
-  if (scene && card.path?.[2] !== scene) return false
+  if (unit && card.path?.[1] !== unit) return false
+  if (lesson && card.path?.[2] !== lesson) return false
   return true
 }
 
@@ -41,13 +41,13 @@ export default function StudyClient() {
   const params = useSearchParams()
 
   const course = params.get("course") ?? ""
-  const act = params.get("act") ?? ""
-  const scene = params.get("scene") ?? ""
+  const unit = params.get("unit") ?? ""
+  const lesson = params.get("lesson") ?? ""
 
   const pool = useMemo(() => {
-    const filtered = cards.filter(c => matchFilters(c, course, act, scene))
+    const filtered = cards.filter(c => matchFilters(c, course, unit, lesson))
     return shuffle(filtered)
-  }, [cards, course, act, scene])
+  }, [cards, course, unit, lesson])
 
   const [index, setIndex] = useState(0)
   const [isFlipped, setIsFlipped] = useState(false)
@@ -128,7 +128,7 @@ export default function StudyClient() {
         <div>
           <h1 className="text-2xl font-bold">Study</h1>
           <p className="text-xs text-muted">
-            {course || "All"}{act ? ` • ${act}` : ""}{scene ? ` • ${scene}` : ""} • {mode === "main" ? "Main" : "Missed"}
+            {course || "All"}{unit ? ` • ${unit}` : ""}{lesson ? ` • ${lesson}` : ""} • {mode === "main" ? "Main" : "Missed"}
           </p>
         </div>
         <Link className="rounded border px-3 py-2 hover:bg-fg/10 transition" href="/">Exit</Link>

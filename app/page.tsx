@@ -18,28 +18,28 @@ export default function Home() {
   const courses = useMemo(() => uniq(cards.map(c => c.path?.[0])), [cards])
   const [course, setCourse] = useState<string>("")
 
-  const acts = useMemo(() => {
+  const units = useMemo(() => {
     if (!course) return []
     return uniq(cards.filter(c => c.path?.[0] === course).map(c => c.path?.[1]))
   }, [cards, course])
 
-  const [act, setAct] = useState<string>("")
+  const [unit, setUnit] = useState<string>("")
 
-  const scenes = useMemo(() => {
-    if (!course || !act) return []
-    return uniq(cards.filter(c => c.path?.[0] === course && c.path?.[1] === act).map(c => c.path?.[2]))
-  }, [cards, course, act])
+  const lessons = useMemo(() => {
+    if (!course || !unit) return []
+    return uniq(cards.filter(c => c.path?.[0] === course && c.path?.[1] === unit).map(c => c.path?.[2]))
+  }, [cards, course, unit])
 
-  const [scene, setScene] = useState<string>("")
+  const [lesson, setLesson] = useState<string>("")
 
   const filteredCount = useMemo(() => {
     return cards.filter(c => {
       if (course && c.path?.[0] !== course) return false
-      if (act && c.path?.[1] !== act) return false
-      if (scene && c.path?.[2] !== scene) return false
+      if (unit && c.path?.[1] !== unit) return false
+      if (lesson && c.path?.[2] !== lesson) return false
       return true
     }).length
-  }, [cards, course, act, scene])
+  }, [cards, course, unit, lesson])
 
   if (!mounted) {
     return (
@@ -59,28 +59,28 @@ export default function Home() {
 
       <div className="space-y-2">
         <label className="block text-sm font-medium">Course</label>
-        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={course} onChange={e => { setCourse(e.target.value); setAct(""); setScene("") }}>
+        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={course} onChange={e => { setCourse(e.target.value); setUnit(""); setLesson("") }}>
           <option value="">All</option>
           {courses.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
 
-        <label className="block text-sm font-medium">Act</label>
-        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={act} onChange={e => { setAct(e.target.value); setScene("") }} disabled={!course}>
+        <label className="block text-sm font-medium">Unit</label>
+        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={unit} onChange={e => { setUnit(e.target.value); setLesson("") }} disabled={!course}>
           <option value="">All</option>
-          {acts.map(a => <option key={a} value={a}>{a}</option>)}
+          {units.map(a => <option key={a} value={a}>{a}</option>)}
         </select>
 
-        <label className="block text-sm font-medium">Scene</label>
-        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={scene} onChange={e => setScene(e.target.value)} disabled={!course || !act}>
+        <label className="block text-sm font-medium">Lesson</label>
+        <select className="w-full border rounded p-2 bg-bg text-fg appearance-none" value={lesson} onChange={e => setLesson(e.target.value)} disabled={!course || !unit}>
           <option value="">All</option>
-          {scenes.map(s => <option key={s} value={s}>{s}</option>)}
+          {lessons.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 
       <div className="flex gap-2">
         <Link
           className="flex-1 text-center rounded bg-primary text-primary-fg p-3 hover:brightness-110 hover:[box-shadow:0_0_8px_2px_var(--glow-primary)] transition"
-          href={`/study?course=${encodeURIComponent(course)}&act=${encodeURIComponent(act)}&scene=${encodeURIComponent(scene)}`}
+          href={`/study?course=${encodeURIComponent(course)}&unit=${encodeURIComponent(unit)}&lesson=${encodeURIComponent(lesson)}`}
         >
           Study ({filteredCount})
         </Link>

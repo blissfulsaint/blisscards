@@ -2,7 +2,7 @@ export type Card = {
   id: string
   front: string
   back: string
-  path: string[] // ["Japanese", "Act 1", "Scene 3"]
+  path: string[] // ["Japanese", "Unit 1", "Lesson 3"]
   tags: string[]
   notes?: string
   createdAt: string
